@@ -11,10 +11,14 @@ else:
     load_dotenv(env_path_parent)
 
 def get_database_url() -> str:
-    url = os.getenv("mysql://root:EakUYgSJCpLWfjlYZhFiDRzXaabexVCz@altaria.proxy.rlwy.net:10750/railway")
-    # Automatically convert standard 'mysql://' to 'mysql+pymysql://' for cloud platforms (Render, Railway, Docker)
-    if url.startswith("mysql://root:EakUYgSJCpLWfjlYZhFiDRzXaabexVCz@altaria.proxy.rlwy.net:10750/railway"):
-        url = url.replace("mysql://root:EakUYgSJCpLWfjlYZhFiDRzXaabexVCz@altaria.proxy.rlwy.net:10750/railway", "mysql+pymysql://root:EakUYgSJCpLWfjlYZhFiDRzXaabexVCz@altaria.proxy.rlwy.net:10750/railway", 1)
+    default_railway_url = "mysql+pymysql://root:EakUYgSJCpLWfjlYZhFiDRzXaabexVCz@altaria.proxy.rlwy.net:10750/railway"
+    url = os.getenv("DATABASE_URL", default_railway_url)
+    if not url or not str(url).strip():
+        url = default_railway_url
+    else:
+        url = str(url).strip()
+    if url.startswith("mysql://"):
+        url = url.replace("mysql://", "mysql+pymysql://", 1)
     return url
 
 class Settings:
