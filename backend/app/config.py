@@ -11,7 +11,7 @@ else:
     load_dotenv(env_path_parent)
 
 def get_database_url() -> str:
-    url = os.getenv("DATABASE_URL", "mysql+pymysql://root:root@localhost:3306/ecomproff").strip()
+    url = os.getenv("mysql://root:EakUYgSJCpLWfjlYZhFiDRzXaabexVCz@altaria.proxy.rlwy.net:10750/railway").strip()
     # Automatically convert standard 'mysql://' to 'mysql+pymysql://' for cloud platforms (Render, Railway, Docker)
     if url.startswith("mysql://"):
         url = url.replace("mysql://", "mysql+pymysql://", 1)
