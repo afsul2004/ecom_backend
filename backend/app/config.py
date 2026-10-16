@@ -13,7 +13,7 @@ else:
 def get_database_url() -> str:
     url = os.getenv("mysql://root:EakUYgSJCpLWfjlYZhFiDRzXaabexVCz@altaria.proxy.rlwy.net:10750/railway")
     # Automatically convert standard 'mysql://' to 'mysql+pymysql://' for cloud platforms (Render, Railway, Docker)
-    if url.startswith("mysql://"):
+    if url.startswith("mysql://root:EakUYgSJCpLWfjlYZhFiDRzXaabexVCz@altaria.proxy.rlwy.net:10750/railway"):
         url = url.replace("mysql://root:EakUYgSJCpLWfjlYZhFiDRzXaabexVCz@altaria.proxy.rlwy.net:10750/railway", "mysql+pymysql://root:EakUYgSJCpLWfjlYZhFiDRzXaabexVCz@altaria.proxy.rlwy.net:10750/railway", 1)
     return url
 
